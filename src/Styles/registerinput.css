@@ -1,0 +1,10 @@
+.register-input__field {
+  text-decoration: none;
+  color: hsla(24, 93%, 56%, 0.877);
+  margin-bottom: 8px;
+  display: block;
+}
+.register-input__field:focus {
+  outline: none;
+  border: 2px solid hsla(24, 93%, 56%, 0.877);
+}
