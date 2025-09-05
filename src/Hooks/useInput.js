@@ -1,25 +1,11 @@
-import { useState, useCallback } from "react";
+import { useState } from 'react';
 
-/**
- * Custom hook for managing input state.
- * @param {string} defaultValue - The initial value of the input.
- * @param {function} [onChange] - Optional custom onChange handler.
- * @returns {[string, function, function, function]} [value, setValue, handleChange, reset]
- */
-const useInput = (defaultValue = "", onChange) => {
+export default function useInput(defaultValue = '') {
   const [value, setValue] = useState(defaultValue);
 
-  const handleChange = useCallback(
-    (e) => {
-      setValue(e.target.value);
-      if (onChange) onChange(e);
-    },
-    [onChange]
-  );
+  function handleValueChange({ target }) {
+    setValue(target.value);
+  }
 
-  const reset = useCallback(() => setValue(defaultValue), [defaultValue]);
-
-  return [value, setValue, handleChange, reset];
-};
-
-export default useInput;
+  return [value, handleValueChange, setValue];
+}

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Navigation from "./Component/Navigation.js";
 import Home from "./Section/Home";
 import Billboard from "./Section/Billboard.js";
@@ -10,7 +10,7 @@ import Register from "./Section/Register";
 import LoadingIndicator from "./Component/LoadingIndicator.js";
 import { useDispatch, useSelector } from "react-redux";
 import { asyncUnsetAuthUser } from "./Action/Authentic/action";
-import { asyncPreloadProccess } from "./Action/isPreload/action.js";
+import { asyncPreloadProcess } from "./Action/isPreload/action.js";
 
 function App() {
   const { authUser = null, isPreload = false } = useSelector(
@@ -19,7 +19,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(asyncPreloadProccess());
+    dispatch(asyncPreloadProcess());
   }, [dispatch]);
 
   const onLogout = () => {

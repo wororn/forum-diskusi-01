@@ -1,40 +1,25 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import RegisterForm from "../Component/RegisterForm.js";
-import { register } from "../Utils/api.js";
+import React from 'react';
+import { Link, useNavigate  } from 'react-router-dom';
+import RegisterInput from '../Component/RegisterInput';
+import { register } from '../Utils/api';
 
-function Register() {
+function RegisterPage() {
   const navigate = useNavigate();
-  const [errorMsg, setErrorMsg] = useState("");
-
+  
   async function onRegisterHandler(user) {
-    setErrorMsg("");
-    try {
-      const { error, message } = await register(user);
-      if (!error) {
-        navigate("/");
-      } else {
-        setErrorMsg(message || "Registration is Fail. Try again, please.");
-      }
-    } catch (err) {
-      setErrorMsg("has been failure. try again, please.");
+    const { error } = await register(user);
+    if (!error) {
+      navigate('/');
     }
   }
 
   return (
-    <section className="register-panel">
-      <h2>You shouldn't have to be seriously ...</h2>
-      {errorMsg && (
-        <div className="alert alert-danger" role="alert">
-          {errorMsg}
-        </div>
-      )}
-      <RegisterForm register={onRegisterHandler} />
-      <p>
-        go to <Link to="/">Entry</Link>
-      </p>
+    <section className='register-page'>
+      <h2>Gak perlu serius-serius ya isinya ...</h2>
+      <RegisterInput register={onRegisterHandler} />
+      <p>Kembali ke <Link to="/">Masuk</Link></p>
     </section>
-  );
+  )
 }
 
-export default Register;
+export default RegisterPage;

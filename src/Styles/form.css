@@ -1,0 +1,48 @@
+.register-input__field,
+.form-label {
+  text-decoration: none;
+  color: hsla(24, 93%, 56%, 0.877);
+  margin-bottom: 8px;
+  display: block;
+}
+.register-input__field,
+.form-label:focus {
+  outline: none;
+  border: 2px solid hsla(24, 93%, 56%, 0.877);
+}
+.form-label,
+.form-control,
+.btn,
+.mb-4,
+.mt-2 {
+  font-weight: 600;
+  margin-bottom: 8px;
+  margin-left: 200px;
+  display: block;
+}
+
+.login-input, .register-input, ut {
+  margin-top: 16px;
+}
+
+.login-input input, .register-input input,  input {
+  display: block;
+  padding: 16px;
+  width: 100%;
+  margin: 8px 0;
+  font-size: 24px;
+  background-color: transparent;
+  border: 2px dashed black;
+  border-radius: 8px;
+}
+
+.login-input button, .register-input button,  button {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  font-size: 24px;
+  background-color: tan;
+  border: 2px dashed black;
+  border-radius: 8px;
+  margin: 16px 0;
+}

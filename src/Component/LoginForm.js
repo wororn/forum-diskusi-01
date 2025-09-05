@@ -1,101 +1,64 @@
-import React from "react";
-import LoadingIndicator from "./LoadingIndicator.js";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import useInput from "../Hooks/useInput.js";
+import "../Styles/form.css";
 
-class LoginForm extends React.Component {
-  constructor(props) {
-    super(props);
+function LoginForm({ onLogin }) {
+  const [email, handleEmailChange] = useInput("");
+  const [password, handlePasswordChange] = useInput("");
 
-    this.state = {
-      email: "",
-      password: "",
-    };
-
-    this.onEmailChangeHandler = this.onEmailChangeHandler.bind(this);
-    this.onPasswordChangeHandler = this.onPasswordChangeHandler.bind(this);
-    this.onSubmitHandler = this.onSubmitHandler.bind(this);
+  function handleSubmit(e) {
+    e.preventDefault();
+    onLogin({ email, password });
   }
 
-  onEmailChangeHandler(event) {
-    this.setState({ email: event.target.value });
-  }
-
-  onPasswordChangeHandler(event) {
-    this.setState({ password: event.target.value });
-  }
-
-  onSubmitHandler(event) {
-    event.preventDefault();
-    if (!this.props.loading) {
-      this.props.login({
-        email: this.state.email,
-        password: this.state.password,
-      });
-    }
-  }
-
-  render() {
-    const { loading, inputRef } = this.props;
-
-    return (
-      <form
-        onSubmit={this.onSubmitHandler}
-        className="login-input"
-        style={{
-          width: "18%",
-          border: "1px solid black",
-          padding: "10px",
-          margin: "50px",
-          textAlign: "center",
-        }}
-        aria-label="Login Form"
-      >
-        <div style={{ width: "100%", marginBottom: "8px" }}>
+  return (
+    <>
+      <form onSubmit={handleSubmit} autoComplete="on">
+        <div className="mb-3">
+          <label htmlFor="email" className="form-label">
+            Email
+          </label>
           <input
             type="email"
-            placeholder="Email"
-            value={this.state.email}
-            onChange={this.onEmailChangeHandler}
-            ref={inputRef}
-            autoComplete="username"
-            aria-label="Email"
-            style={{
-              border: "1px solid black",
-              color: "hsla(24, 93%, 56%, 0.877)",
-              width: "95%",
-              padding: "6px",
-            }}
-            disabled={loading}
+            name="email"
+            placeholder="Your email..."
+            onChange={handleEmailChange}
+            value={email}
+            id="email"
+            className="form-control"
+            autoComplete="email"
             required
+            aria-label="Email"
           />
         </div>
-        <div style={{ width: "100%", marginBottom: "8px" }}>
+        <div className="mb-3">
+          <label htmlFor="password" className="form-label">
+            Password
+          </label>
           <input
             type="password"
-            placeholder="Password"
-            value={this.state.password}
-            onChange={this.onPasswordChangeHandler}
+            name="password"
+            placeholder="Your password..."
+            onChange={handlePasswordChange}
+            value={password}
+            id="password"
+            className="form-control"
             autoComplete="current-password"
-            aria-label="Password"
-            style={{
-              border: "1px solid black",
-              color: "hsla(24, 93%, 56%, 0.877)",
-              width: "95%",
-              padding: "6px",
-            }}
-            disabled={loading}
             required
+            aria-label="Password"
           />
         </div>
-        <button
-          type="submit"
-          disabled={loading}
-          style={{ width: "100%", padding: "8px" }}
-        >
-          {loading ? <LoadingIndicator /> : "Masuk"}
+        <button type="submit" className="btn btn-primary w-100">
+          Login
         </button>
       </form>
-    );
-  }
+      <p className="text-center text-body-secondary mt-2">
+        Don&apos;t have an account?
+        <Link to="/register"> Register</Link>
+      </p>
+    </>
+  );
 }
 
 export default LoginForm;

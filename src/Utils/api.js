@@ -1,6 +1,8 @@
 const api = (() => {
     const BASEURL = 'https://forum-api.dicoding.dev/v1'
 
+    //const BASEURL = 'https://contact-api.dicoding.dev/v1';
+
     async function fetchWithAuth(url, options = {}) {
         return await fetch(url, {
             ...options,
