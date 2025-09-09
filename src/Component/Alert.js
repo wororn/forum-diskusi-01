@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import React from 'react';
 
 function Alert({ message, onClose, type = 'danger' }) {
   const replacedMessage = message.replace(/"/g, '');

@@ -1,5 +1,5 @@
 import { hideLoading, showLoading } from "react-redux-loading-bar";
-import api from "../../Utils/api";
+import {login,getOwnProfile,putAccessToken} from "../../Utils/api";
 
 /**
  * Action types for authentication.
@@ -43,10 +43,10 @@ export function asyncSetAuthUser({ email, password }) {
   return async (dispatch) => {
     dispatch(showLoading());
     try {
-      const token = await api.login({ email, password });
-      api.putAccessToken(token);
+      const token = await login({ email, password });
+      putAccessToken(token);
 
-      const authUser = await api.getOwnProfile();
+      const authUser = await getOwnProfile();
       dispatch(setAuthUserActionCreator(authUser));
     } catch (error) {
       alert(error.message);
@@ -66,7 +66,7 @@ export function asyncUnsetAuthUser() {
   return (dispatch) => {
     dispatch(showLoading());
     dispatch(unsetAuthUserActionCreator());
-    api.putAccessToken("");
+    putAccessToken("");
     dispatch(hideLoading());
   };
 }

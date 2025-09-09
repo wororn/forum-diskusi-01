@@ -1,4 +1,4 @@
-import api from "../../Utils/api"
+import {createComment} from "../../Utils/api"
 import { hideLoading, showLoading } from "react-redux-loading-bar"
 
 const ActionType = {
@@ -30,7 +30,7 @@ function asyncAddComment({content}) {
         const {detailThread} = getState()
 
         try {
-            const comment = await api.createComment({content, threadId: detailThread.id})
+            const comment = await createComment({content, threadId: detailThread.id})
             dispatch(addCommentThreadActionCreator(comment))
         } catch (error) {
             alert(error.message)

@@ -1,4 +1,4 @@
-import api from "../../Utils/api";
+import {register} from "../../Utils/api";
 import { hideLoading, showLoading } from "react-redux-loading-bar";
 
 /**
@@ -36,7 +36,7 @@ function asyncRegisterUser({ name, email, password }) {
   return async (dispatch) => {
     dispatch(showLoading());
     try {
-      const registeredUser = await api.register({ name, email, password });
+      const registeredUser = await register({ name, email, password });
       // Optionally, you can dispatch another action here if needed
       return registeredUser;
     } catch (error) {

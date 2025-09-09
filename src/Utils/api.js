@@ -1,7 +1,6 @@
-const api = (() => {
-    const BASEURL = 'https://forum-api.dicoding.dev/v1'
+//const api = (() => {
 
-    //const BASEURL = 'https://contact-api.dicoding.dev/v1';
+    const BASEURL = "https://forum-api.dicoding.dev/v1"
 
     async function fetchWithAuth(url, options = {}) {
         return await fetch(url, {
@@ -256,7 +255,7 @@ const api = (() => {
         return vote
     }
 
-    return {
+    export {
         putAccessToken,
         getAccessToken,
         login,
@@ -272,6 +271,6 @@ const api = (() => {
         downVoteThread,
         neutralizeThreadVote,
     }
-})()
+//})()
 
-export default api
+//export default api

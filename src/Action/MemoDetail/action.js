@@ -1,4 +1,4 @@
-import api from "../../Utils/api"
+import {getThreadDetail} from "../../Utils/api"
 import { hideLoading, showLoading } from "react-redux-loading-bar"
 
 const ActionType = {
@@ -26,7 +26,7 @@ function asyncReceiveMemoDetail(threadId) {
     return async (dispatch) => {
         dispatch(showLoading())
         try {
-            const detailThread = await api.getThreadDetail(threadId)
+            const detailThread = await getThreadDetail(threadId)
             dispatch(receiveDetailThreadActionCreator(detailThread))
         } catch (error) {
             alert(error.message)

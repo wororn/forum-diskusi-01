@@ -1,4 +1,4 @@
-import api from "../../Utils/api";
+import {getAllUsers,getAllThreads,getAllLeaderboards} from "../../Utils/api";
 import { receiveBillboardsActionCreator } from "../BillBoard/action.js";
 import { receiveUsersActionCreator } from "../User/action.js";
 import { receiveStreamActionCreator } from "../Stream/action.js";
@@ -13,9 +13,9 @@ function asyncPopulateUsersThreadsLeaderboards() {
     dispatch(showLoading());
     try {
       const [users, threads, leaderboards] = await Promise.all([
-        api.getAllUsers(),
-        api.getAllThreads(),
-        api.getAllLeaderboards(),
+        getAllUsers(),
+        getAllThreads(),
+        getAllLeaderboards(),
       ]);
 
       dispatch(receiveUsersActionCreator(users));

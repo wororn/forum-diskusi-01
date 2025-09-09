@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 function SearchForm({ keyword, keywordChange }) {
   return (
@@ -13,5 +14,9 @@ function SearchForm({ keyword, keywordChange }) {
     </form>
   );
 }
+SearchForm.propTypes = {
+  keyword: PropTypes.string.isRequired,
+  keywordChange: PropTypes.func.isRequired,
+};
 
 export default SearchForm;

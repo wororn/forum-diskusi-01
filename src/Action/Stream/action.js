@@ -1,4 +1,4 @@
-import api from "../../Utils/api";
+import {createThread,upVoteThread} from "../../Utils/api";
 import { hideLoading, showLoading } from "react-redux-loading-bar";
 
 /**
@@ -51,7 +51,7 @@ function asyncAddThread({ title, body, category = "" }) {
   return async (dispatch) => {
     dispatch(showLoading());
     try {
-      const thread = await api.createThread({ title, body, category });
+      const thread = await createThread({ title, body, category });
       dispatch(addThreadActionCreator(thread));
     } catch (error) {
       console.error(error);
@@ -74,7 +74,7 @@ function asyncUpVoteThread(threadId) {
     dispatch(upVoteThreadActionCreator({ threadId, userId: authUser.id }));
 
     try {
-      await api.upVoteThread(threadId);
+      await upVoteThread(threadId);
     } catch (error) {
       console.error(error);
       alert(error.message);
